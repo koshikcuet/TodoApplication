@@ -14,56 +14,36 @@
         </div>
     </div>
     <div class="blog_section_2">
+
+
+        @model List<list_project>
+
         <div class="container">
             <div class="row">
-                <div class="col-md-3" style="min-height:500px;">
-                    <div class="blog_box">
-                        <div class="blog_img">
-                            <h3 class="date_text" style="font-weight:bold; text-align:center;">Web Based </h3>
-                            <h3 style="font-weight:bold; text-align:center; padding:41px;">Web Based Projects</h3>
-                        </div>
-                         <p style="min-height:100px;">HTML, CSS, Javascript, JQuery, Ajax, .net</p>
-                        <div class="readmore_bt_1" style="background-color:#f5c729 !important"><a asp-controller="Home"  asp-action="ProjectDetails" asp-route-sid="1">Projects</a></div>
-                    </div>
-                </div>
-                <div class="col-md-3" style="min-height:500px;">
-                    <div class="blog_box">
-                        <div class="blog_img">
-                            <h3 class="date_text" style="font-weight:bold; text-align:center;">Datascience  </h3>
-                            <h3 style="font-weight:bold; text-align:center;padding:41px;">Deep Learning and Machine Learning </h3>
-                        </div>
-                         <p style="min-height:100px;">python, sckitlearn, matplotlib, tensorflow, cnn, machine learning models</p>
-                        <div class="readmore_bt_1" style="background-color:#f5c729 !important"><a href="#">Projects</a></div>
-                    </div>
-                </div>
-                <div class="col-md-3" style="min-height:500px;">
-                    <div class="blog_box">
-                        <div class="blog_box_3">
+                @foreach (var project in Model)
+                {
+                    <div class="col-md-3" style="min-height:500px;">
+                        <div class="blog_box">
                             <div class="blog_img">
-                                <h3 class="date_text" style="font-weight:bold; text-align:center;">Image Processing  </h3>
-                                <h3 style="font-weight:bold; text-align:center;padding:41px;"> Computer Vision  </h3>
+                                <!-- Display the heading and title dynamically -->
+                                <h3 class="date_text" style="font-weight:bold; text-align:center;">@project.heading</h3>
+                                <h3 style="font-weight:bold; text-align:center; padding:41px;">@project.title</h3>
                             </div>
-                             <p style="min-height:100px;"> Computer Vision Library</p>
-                            <div class="readmore_bt_1" style="background-color:#f5c729 !important"><a href="#">Projects</a></div>
+                            <!-- Display the details dynamically -->
+                            <p style="min-height:100px;">@project.details</p>
+                            <div class="readmore_bt_1" style="background-color:#f5c729 !important">
+                                <!-- Use the 'atn' as the route parameter -->
+                                <a asp-controller="Home" asp-action="ProjectDetails" asp-route-sid="@project.atn">Projects</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-3" style="min-height:500px;">
-                    <div class="blog_box">
-                        <div class="blog_box_3">
-                            <div class="blog_img">
-                                <h3 class="date_text" style="font-weight:bold; text-align:center;">Mobile App </h3>
-                                <h3 style="font-weight:bold; text-align:center;padding:41px;"> Android App </h3>
-                            </div>
-                             <p style="min-height:100px;"> react-native, firebase, local storage</p>
-                            <div class="readmore_bt_1" style="background-color:#f5c729 !important"><a href="#">Projects</a></div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
-    
         </div>
+
+
+
+
     </div>
 </div>
 <!-- blog section end -->

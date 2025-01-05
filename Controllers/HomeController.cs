@@ -33,7 +33,7 @@ namespace NishuPortFolio.Controllers
         public IActionResult Index()
         {
             ViewData["ActiveMenu"] = "Home";
-            List<Content> contentList = GetContent(ant: 1); // Adjust the ant parameter as needed
+            List<Content> contentList = GetContent1(ant: 1); // Adjust the ant parameter as needed
             string title = contentList.FirstOrDefault()?.Title; // Get the title from the first content item
             ViewData["Title"] = title; // Store title in ViewData
 
@@ -81,18 +81,46 @@ namespace NishuPortFolio.Controllers
 
 
 
+        public List<Content> GetContent1(int ant)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                // Query to retrieve content filtered by ant
+                string query = "SELECT * FROM [ent_content] WHERE ant = @Ant";
+
+                // Execute the query and map the results to a list of Content objects
+                return conn.Query<Content>(query, new { Ant = ant }).ToList();
+
+            }
+        }
+
+        public List<list_project> GetProject()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                // Query to retrieve content filtered by ant
+                string query = "SELECT * FROM [list_project]";
+
+                // Execute the query and map the results to a list of Content objects
+                return conn.Query<list_project>(query).ToList();
+
+            }
+        }
+
+
 
         public IActionResult ProjectDetails()
         {
             ViewData["ActiveMenu"] = "Projects";
 
-            return View();
+           return View();
 
         }
         public IActionResult Contact()
         {
             ViewData["ActiveMenu"] = "Contact";
             return View();
+
 
         }
         
@@ -104,7 +132,8 @@ namespace NishuPortFolio.Controllers
         public IActionResult Projects()
         {
             ViewData["ActiveMenu"] = "Projects";
-            return View();
+            List<list_project> contentList = GetProject(); // Adjust the ant parameter as needed
+            return View(contentList); // Pass the data to the view
         }
         
         public IActionResult Privacy()
