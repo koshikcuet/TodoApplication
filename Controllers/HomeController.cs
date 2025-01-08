@@ -119,7 +119,7 @@ namespace NishuPortFolio.Controllers
         public IActionResult Contact()
         {
             ViewData["ActiveMenu"] = "Contact";
-            return View();
+            return View();   
 
 
         }
