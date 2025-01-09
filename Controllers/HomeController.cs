@@ -111,7 +111,7 @@ namespace NishuPortFolio.Controllers
 
         public IActionResult ProjectDetails()
         {
-            ViewData["ActiveMenu"] = "Projects";
+            ViewData["ActiveMenu"] = "Projects";  
 
            return View();
 
